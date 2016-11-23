@@ -1,1 +1,1 @@
-web: node myentrypoint.js
+web: node index.js
