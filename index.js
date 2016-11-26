@@ -1,4 +1,4 @@
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 6000;
 
 const express = require('express');
 const app = express();
@@ -12,7 +12,14 @@ app.set('views', __dirname + '/views');
 app.use("/", express.static(__dirname + '/public'));
 
 
-var db = pgp(process.env.DATABASE_URL || 'postgres://danielletwaalfhoven@localhost:5432/heroku_test');
+var db = pgp(process.env.DATABASE_URL || 'postgres://danielletwaalfhoven@localhost:5432/quiet-dusk-36143');
+
+// var db = pgp(process.env.DATABASE_URL || 'postgres://danielletwaalfhoven@localhost:5432/heroku_test');
+
+app.listen(PORT, function() {
+  console.log('Node app is running on', PORT);
+});
+
 
 app.get('/', function(req, res) {
     db.any('SELECT * FROM messages').then(function(data) {
@@ -24,6 +31,12 @@ app.get('/', function(req, res) {
 });
 
 
-app.listen(PORT, function() {
-  console.log('Node app is running on', PORT);
-});
+
+// app.get('/', function(req, res) {
+//   db.many('SELECT * FROM messages').then(function(data) {
+//     var json_data = data;
+//     res.json(data);
+//   });
+// });
+
+
