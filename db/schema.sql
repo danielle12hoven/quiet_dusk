@@ -6,7 +6,7 @@ CREATE TABLE messages(
     name VARCHAR(200) NOT NULL
 );
 
-INSERT INTO messages (phrase, name) VALUES ('Hi, Welcome to our first heroku app!', 'joe');
-INSERT INTO messages (phrase) VALUES ('Heroku is a fun place to deploy your app');
-INSERT INTO messages (phrase) VALUES ('Heroku is free');
+INSERT INTO messages (phrase, name) VALUES ('Whats up!', 'joe');
+INSERT INTO messages (phrase) VALUES ('dsfokj');
+INSERT INTO messages (phrase) VALUES ('lkjdsd sdflkj');
 INSERT INTO messages (phrase) VALUES ('Which is good');

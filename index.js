@@ -21,22 +21,22 @@ app.listen(PORT, function() {
 });
 
 
-app.get('/', function(req, res) {
-    db.any('SELECT * FROM messages').then(function(data) {
-        var template_data = {
-            messages: data
-        }
-        res.render('index', template_data);
-    });
-});
-
-
-
 // app.get('/', function(req, res) {
-//   db.many('SELECT * FROM messages').then(function(data) {
-//     var json_data = data;
-//     res.json(data);
-//   });
+//     db.any('SELECT * FROM messages').then(function(data) {
+//         var template_data = {
+//             messages: data
+//         }
+//         res.render('index', template_data);
+//     });
 // });
+
+
+
+app.get('/', function(req, res) {
+  db.many('SELECT * FROM messages').then(function(data) {
+    var json_data = data;
+    res.json(data);
+  });
+});
 
 
