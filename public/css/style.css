@@ -1,4 +1,31 @@
 h1 {
   text-align: center;
-  color: blue;
 }
+
+.home-page {
+  text-align: center;
+}
+
+.nav-bar {
+  text-decoration: none;
+}
+
+.item {
+  width:500px;
+  height: 110px;
+  margin-top: 10px;
+  list-style-type: none;
+  box-shadow: -2px 2px 1px #222222;
+  background-color: #EEEEEE;
+}
+.profilePic {
+  float: left;
+  margin: 0 10px 0 10px;
+  box-shadow: -1px 1px 2px #222222;
+
+}
+.searchBar {
+  margin: auto;
+  width: 290px;
+}
+

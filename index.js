@@ -1,4 +1,4 @@
-const PORT = process.env.PORT || 6000;
+const PORT = process.env.PORT || 4269;
 
 const express = require('express');
 const app = express();
@@ -8,11 +8,12 @@ const mustacheExpress = require('mustache-express');
 
 app.engine('html', mustacheExpress());
 app.set('view engine', 'html');
-app.set('views', __dirname + '/views');
+app.set('views', __dirname + '/public/views');
 app.use("/", express.static(__dirname + '/public'));
 
 
-var db = pgp(process.env.DATABASE_URL || 'postgres://danielletwaalfhoven@localhost:5432/quiet-dusk-36143');
+
+var db = pgp(process.env.DATABASE_URL || 'postgres://danielletwaalfhoven@localhost:5432/linkedIn');
 
 // var db = pgp(process.env.DATABASE_URL || 'postgres://danielletwaalfhoven@localhost:5432/heroku_test');
 
@@ -21,8 +22,18 @@ app.listen(PORT, function() {
 });
 
 
+app.get("/", function(req, res) {
+  res.render("index");
+});
+
+// app.get('/', function(req,res) {
+//   res.send('hi')
+// })
+
+
+// this is the original one
 // app.get('/', function(req, res) {
-//     db.any('SELECT * FROM messages').then(function(data) {
+//     db.any('SELECT * FROM users').then(function(data) {
 //         var template_data = {
 //             messages: data
 //         }
@@ -31,12 +42,15 @@ app.listen(PORT, function() {
 // });
 
 
-
-app.get('/', function(req, res) {
-  db.many('SELECT * FROM messages').then(function(data) {
-    var json_data = data;
-    res.json(data);
-  });
-});
+//this should work like the realty exercise in pulling data from the r_basicprofile
+//and rendering the info in the people.html page
+// app.get('/r_basicprofile', function(req, res) {
+//   db.any('SELECT * FROM r_basicprofile').then(function(data) {
+//     res.render('people', {r_basicprofile: data});
+//   }).catch(function(error){
+//     console.log("ERROR", error);
+//     res.render("index");
+//   });
+// });
 
 
