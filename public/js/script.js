@@ -2,87 +2,101 @@ $(document).ready(function() {
 console.log("script loaded")
 
 
-var $body = $('body');
-
-
-// var getNews = function(){
-// var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
-// url += '?' + $.param({
-//   'api-key': "eab94020aa4b4262b69f33cb8b94e8c1",
-//   'fq': "technology"
-// });
-// $.ajax({
-//   url: url,
-//   method: 'GET',
-// }).done(function(result) {
-//   console.log(result);
-// }).fail(function(err) {
-//   throw err;
-// });
-}
-
-
-
-
-var getEmployees = function() {
-  var query = $("#people-search").val();
+//STRAIN
+var getStrainInfo = function(strains) {
   $.ajax({
     type:"GET",
-    // url: 'http://www.linkedin.com/ta/federator?query=Facebook&types=company',
-    // url: 'http://www.linkedin.com//v1/people/~',
-    url: 'https://www.cannabisreports.com/api/v1.0/strains/search/Blue',
+    url: 'https://www.cannabisreports.com/api/v1.0/strains?sort='+strains+'&page=2',
     dataType:"jsonp",
-    // headers: {
-    // //   'app_id': '77t50vcnrucwlt',
-    //   'app_key': '3i27MZaJYTa5qDNp'
-    // },
-    data : { term: query, limit: 25},
     success: function(data) {
-      console.log(data);
-
-
-  var result = data.results;
-  var $results = $('<ul>');
-  var $item, $description, $image, $name, $lineage;
-
-  result.forEach(function(){
-    $image = $('<img />').attr(item.image);
-    $name = ('<p />').addClass(item.name);
-    $lineage = ('<p />').addClass(item.lineage);
-
-    $description.append($name);
-    $description.append($lineage);
-
-    $item.append($image);
-    $item.append($description);
-    $results.append($item);
-  });
-
-  $body.append($results);
-
+      console.log(data.data);
+      parseStrainData(data);
   },
     error: function(data){
       console.log(data)
     }
   })
 }
-// getEmployees();
 
-
-
-
-
-  // Event Handlers go here
-  var addFunction = function(){
-    $(".button").click(function(event){
-      var getData = $(".submit").val();
-      getEmployees(getData);
+//EVENTHANDLER
+var addStrainFunction = function(){
+    $("#button1").click(function(strains){
+      var strains = $("#button1").val();
+      getStrainInfo(strains);
       event.preventDefault();
     });
   };
-  addFunction()
+  addStrainFunction()
 
-  // $('#click-me').on('click', getEmployees);
+//PARSEDATA
+var parseStrainData = function(data){
+  for(var i=0; i < data.data.length; i++){
+    var strainName = data.data[i].name;
+    var createdDate = data.data[i].createdAt.datetime;
+    var countryData = data.data[i].lineage;
+    var str = "";
+    for (var key in countryData) {
+      str += key + " ";
+    }
+    var seedCompany = data.data[i].seedCompany.name;
+    var img_url = data.data[i].image;
+    $(".postStrainData").append(strainName + " was created in " + createdDate + ".");
+    $(".postStrainData").append(" It's origins are: " + str + ".");
+    $(".postStrainData").append(" You can buy " + strainName + " at the company: " + seedCompany + ".");
+    $(".postStrainData").attr(img_url);
+    $(".postStrainData").append("<br><br>");
+  }
+}
+
+
+
+//EDIBLES
+var getEdiblesInfo = function(edibles) {
+  $.ajax({
+    type:"GET",
+    url: 'https://www.cannabisreports.com/api/v1.0/edibles?sort='+edibles+'&page=2',
+    dataType:"jsonp",
+    success: function(data) {
+      console.log(data.data);
+      parseEdiblesData(data);
+  },
+    error: function(data){
+      console.log(data)
+    }
+  })
+}
+
+//EVENTHANDLER
+var addEdiblesFunction = function(){
+    $("#button2").click(function(edibles){
+      var edibles = $("#button2").val();
+      getEdiblesInfo(edibles);
+      event.preventDefault();
+    });
+  };
+  addEdiblesFunction()
+
+//PARSEDATA
+var parseEdiblesData = function(data){
+  for(var i=0; i < data.data.length; i++){
+    var strainName = data.data[i].name;
+    var createdDate = data.data[i].createdAt.datetime;
+    var countryData = data.data[i].lineage;
+    var str = "";
+    for (var key in countryData) {
+      str += key + " ";
+    }
+    var seedCompany = data.data[i].seedCompany.name;
+    var img_url = data.data[i].image;
+    $(".postEdiblesData").append(strainName + " was created in " + createdDate + ".");
+    $(".postEdiblesData").append(" It's origins are: " + str + ".");
+    $(".postEdiblesData").append(" You can buy " + strainName + " at the company: " + seedCompany + ".");
+    $(".postEdiblesData").attr(img_url);
+    $(".postEdiblesData").append("<br><br>");
+  }
+}
+
+
 
 
 
