@@ -1,5 +1,13 @@
+navbar {
+  text-align: right;
+}
+
 body {
   text-align: center;
+}
+
+.about {
+  text-align: left;
 }
 
 /* .home-page {
@@ -19,7 +27,7 @@ body {
   box-shadow: -2px 2px 1px #222222;
   background-color: #EEEEEE;
 }
-.profilePic {
+.image {
   float: left;
   margin: 0 10px 0 10px;
   box-shadow: -1px 1px 2px #222222;

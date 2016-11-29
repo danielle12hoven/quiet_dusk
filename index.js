@@ -22,9 +22,13 @@ app.listen(PORT, function() {
   console.log('Node app is running on', PORT);
 });
 
+// app.get("/", function(req, res) {
+//   res.render("search");
+// });
+
+
 app.get("/", function(req, res) {
-  res.render("people");
-  // res.render("index");
+  res.render("index");
 });
 
 

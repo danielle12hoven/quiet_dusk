@@ -5,12 +5,31 @@ console.log("script loaded")
 var $body = $('body');
 
 
+// var getNews = function(){
+// var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+// url += '?' + $.param({
+//   'api-key': "eab94020aa4b4262b69f33cb8b94e8c1",
+//   'fq': "technology"
+// });
+// $.ajax({
+//   url: url,
+//   method: 'GET',
+// }).done(function(result) {
+//   console.log(result);
+// }).fail(function(err) {
+//   throw err;
+// });
+}
+
+
+
 
 var getEmployees = function() {
   var query = $("#people-search").val();
   $.ajax({
     type:"GET",
     // url: 'http://www.linkedin.com/ta/federator?query=Facebook&types=company',
+    // url: 'http://www.linkedin.com//v1/people/~',
     url: 'https://www.cannabisreports.com/api/v1.0/strains/search/Blue',
     dataType:"jsonp",
     // headers: {
@@ -21,24 +40,25 @@ var getEmployees = function() {
     success: function(data) {
       console.log(data);
 
-  // var result = data.results;
-  // var $results = $('<ul>');
-  // var $item, $description, $image, $name, $lineage;
 
-  // result.forEach(function(){
-  //   $image = $('<img />').attr(item.image);
-  //   $name = ('<p />').addClass(item.name);
-  //   $lineage = ('<p />').addClass(item.lineage);
+  var result = data.results;
+  var $results = $('<ul>');
+  var $item, $description, $image, $name, $lineage;
 
-  //   $description.append($name);
-  //   $description.append($lineage);
+  result.forEach(function(){
+    $image = $('<img />').attr(item.image);
+    $name = ('<p />').addClass(item.name);
+    $lineage = ('<p />').addClass(item.lineage);
 
-  //   $item.append($image);
-  //   $item.append($description);
-  //   $results.append($item);
-  // });
+    $description.append($name);
+    $description.append($lineage);
 
-  // $body.append($results);
+    $item.append($image);
+    $item.append($description);
+    $results.append($item);
+  });
+
+  $body.append($results);
 
   },
     error: function(data){
@@ -53,16 +73,16 @@ var getEmployees = function() {
 
 
   // Event Handlers go here
-  // var addFunction = function(){
-  //   $("#click-me").click(function(event){
-  //     var getData = $("#people-search").val();
-  //     getEmployees(getData);
-  //     event.preventDefault();
-  //   });
-  // };
-  // addFunction()
+  var addFunction = function(){
+    $(".button").click(function(event){
+      var getData = $(".submit").val();
+      getEmployees(getData);
+      event.preventDefault();
+    });
+  };
+  addFunction()
 
-  $('#click-me').on('click', getEmployees);
+  // $('#click-me').on('click', getEmployees);
 
 
 
