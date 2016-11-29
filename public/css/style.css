@@ -1,15 +1,16 @@
-h1 {
+body {
   text-align: center;
 }
 
-.home-page {
+/* .home-page {
   text-align: center;
-}
+} */
 
-.nav-bar {
+.listItems {
   text-decoration: none;
+  display: inline-block;
 }
-
+/*
 .item {
   width:500px;
   height: 110px;
@@ -27,5 +28,6 @@ h1 {
 .searchBar {
   margin: auto;
   width: 290px;
-}
+} */
+
 

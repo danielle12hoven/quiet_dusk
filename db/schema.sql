@@ -6,7 +6,7 @@ CREATE TABLE users(
     name VARCHAR(200) NOT NULL
 );
 
-INSERT INTO users (phrase, name) VALUES ('Whats up!', 'joe');
+INSERT INTO users (phrase) VALUES ('Whats up!');
 INSERT INTO users (phrase) VALUES ('dsfokj');
 INSERT INTO users (phrase) VALUES ('lkjdsd sdflkj');
 INSERT INTO users (phrase) VALUES ('Which is good');

@@ -5,6 +5,7 @@ const app = express();
 const pgp = require('pg-promise')();
 const mustacheExpress = require('mustache-express');
 
+var fetch = require('node-fetch');
 
 app.engine('html', mustacheExpress());
 app.set('view engine', 'html');
@@ -21,14 +22,12 @@ app.listen(PORT, function() {
   console.log('Node app is running on', PORT);
 });
 
-
 app.get("/", function(req, res) {
-  res.render("index");
+  res.render("people");
+  // res.render("index");
 });
 
-// app.get('/', function(req,res) {
-//   res.send('hi')
-// })
+
 
 
 // this is the original one
@@ -44,13 +43,6 @@ app.get("/", function(req, res) {
 
 //this should work like the realty exercise in pulling data from the r_basicprofile
 //and rendering the info in the people.html page
-// app.get('/r_basicprofile', function(req, res) {
-//   db.any('SELECT * FROM r_basicprofile').then(function(data) {
-//     res.render('people', {r_basicprofile: data});
-//   }).catch(function(error){
-//     console.log("ERROR", error);
-//     res.render("index");
-//   });
-// });
+
 
 
