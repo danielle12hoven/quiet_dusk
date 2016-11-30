@@ -35,6 +35,7 @@ var parseStrainData = function(data){
 
   for(var i=0; i < data.data.length; i++){
     var $strainLi = $('<li>');
+    $strainLi = $strainLi.addClass("appendedItems")
 
     var strainName = data.data[i].name;
     var createdDate = data.data[i].createdAt.datetime;
@@ -44,31 +45,16 @@ var parseStrainData = function(data){
       str += key + " ";
     }
     var seedCompany = data.data[i].seedCompany.name;
-    var seedCompanyLink = data.data[i].seedCompany.link;
+    var seedCompanyLink = data.data[i].url;
     var strain_img_url = data.data[i].image;
 
-    // $(".postStrainData").append(strainName + " was created in " + createdDate + ".");
-    // $(".postStrainData").append(" It's origins are: " + str + ".");
-    // $(".postStrainData").append(" You can buy " + strainName + " at the company: " + seedCompany + ".");
-    // $(".postStrainData").attr(strain_img_url);
-    // $(".postStrainData").append()
-    // $(".postStrainData").append("<br><br>");
-
     $strainLi.append("Product: " + strainName + "<br />");
-    // $strainLi.append("Creation Date: " + createdDate + "<br />");
     $strainLi.append("Origins: " + str + "<br />");
-    $strainLi.append("Retailer " + seedCompany + "<br />");
-    $strainLi.append("Website : " + seedCompanyLink + "<br />");
-    $strainLi.attr(strain_img_url);
-
-
-//TESTING BUTTON APPENDING
-    // function createInput(){
-    //   var $input = $('<input type="button" value="new button" />');
-    //   $strainLi.append($input);
-    // }
-
+    $strainLi.append("Retailer: " + seedCompany + "<br />");
+    $strainLi.append("Website: " + seedCompanyLink + "<br />");
     $strainLi.append("<br><br>");
+    $strainLi.append("<button>Save</button>");
+    $strainLi.attr(strain_img_url);
 
     $strainUl.append($strainLi);
     $(".postStrainData").append($strainUl)
@@ -104,30 +90,28 @@ var addEdiblesFunction = function(){
   };
   addEdiblesFunction()
 
-
 //PARSEDATA
 var parseEdiblesData = function(data){
   var $ediblesUl = $("<ul>");
 
   for(var j=0; j < data.data.length; j++){
     var $ediblesLi = $("<li>");
+    $ediblesLi = $ediblesLi.addClass("appendedItems")
 
     var ediblesName = data.data[j].name;
     var producerName = data.data[j].producer.name;
     var edibleType = data.data[j].type;
     var edibles_img_url = data.data[j].image;
+    var ediblesTHC = data.data[j].thc;
 
-    // $(".postEdiblesData").append(ediblesName + " was created by " + producerName + ".");
-    // $(".postEdiblesData").append(" Type: " + edibleType + ".");
-    // $(".postEdiblesData").attr(edibles_img_url);
-    // $(".postEdiblesData").append("<br><br>");
 
     $ediblesLi.append("Name: " +ediblesName + "<br />");
     $ediblesLi.append("Created by: " + producerName + "<br />");
-    $ediblesLi.append("Type: " + edibleType + ".");
-
-    $ediblesLi.attr(edibles_img_url);
+    $ediblesLi.append("Type: " + edibleType + "<br />");
+    $ediblesLi.append("THC : " + ediblesTHC + "<br />");
     $ediblesLi.append("<br><br>");
+    $ediblesLi.append("<button>Save</button>");
+    $ediblesLi.attr(edibles_img_url);
 
     $ediblesUl.append($ediblesLi);
     $(".postEdiblesData").append($ediblesUl);

@@ -58,7 +58,7 @@ app.listen(PORT, function() {
 
 
 //SIGN UP DATA
-app.post('sign-up/signup', function(req, res){
+app.post('/sign-up/signup', function(req, res){
     db.one("INSERT INTO users(email, password_digest) values($1, $2) returning id", [req.body.email, req.body.password])
    .then(function(data){
      console.log(data.id);

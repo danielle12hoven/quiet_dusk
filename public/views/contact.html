@@ -11,42 +11,45 @@
   <body>
     <div class="contact-page">
 
-      <ul class="navbar-default">
-        <li class="listItems">
-          <a href="/views/contact.html">Contact</a>
-        </li>
-        <li class="listItems">
-          <a href="/views/saved.html">Saved</a>
-        </li>
-        <li class="listItems">
-          <a href="/views/sign-up/signin.html">Sign In</a>
-        </li>
-      </ul>
+      <div class="topNav">
+        <ul class="navbar-default">
+          <li class="listItems">
+            <a href="/views/contact.html">Contact</a>
+          </li>
+          <li class="listItems">
+            <a href="/views/saved.html">Saved</a>
+          </li>
+          <li class="listItems">
+            <a href="/views/sign-up/signin.html">Sign In</a>
+          </li>
+        </ul>
+      </div>
 
       <br></br>
 
-      <ul class="#">
-        <li class="listItems">
-          <a href="/views/index.html">Home</a>
-        </li>
-        <li class="listItems">
-          <a href="/views/search.html">Strains</a>
-        </li>
-        <li class="listItems">
-          <a href="/views/edibles.html">Edibles</a>
-        </li>
-        <li class="listItems">
-          <a href="/views/articles.html">Articles</a>
-        </li>
-      </ul>
+      <div class="middleNav">
+        <ul class="#">
+          <li class="listItems">
+            <a href="/views/index.html">Home</a>
+          </li>
+          <li class="listItems">
+            <a href="/views/search.html">Strains</a>
+          </li>
+          <li class="listItems">
+            <a href="/views/edibles.html">Edibles</a>
+          </li>
+          <li class="listItems">
+            <a href="/views/articles.html">Articles</a>
+          </li>
+        </ul>
+      </div>
 
       <div class="container">
         <h1>Contact</h1>
       </div>
 
       <div class="emailSubmit">
-        <form method="post" name="contact_form"
-          action="saved.html">
+        <form method="post" name="contact_form" action="/contact">
             Your Name:
             <input type="text" name="name">
             <br />
