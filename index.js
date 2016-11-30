@@ -5,6 +5,9 @@ const app = express();
 const pgp = require('pg-promise')();
 const mustacheExpress = require('mustache-express');
 
+const bodyParser = require("body-parser")
+const session = require ("express-session")
+
 var fetch = require('node-fetch');
 
 app.engine('html', mustacheExpress());
@@ -12,25 +15,33 @@ app.set('view engine', 'html');
 app.set('views', __dirname + '/public/views');
 app.use("/", express.static(__dirname + '/public'));
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
+app.use(session({
+  secret: 'theTruthIsOutThere51',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}))
 
 var db = pgp(process.env.DATABASE_URL || 'postgres://danielletwaalfhoven@localhost:5432/linkedIn');
-
-// var db = pgp(process.env.DATABASE_URL || 'postgres://danielletwaalfhoven@localhost:5432/heroku_test');
-
-app.listen(PORT, function() {
-  console.log('Node app is running on', PORT);
-});
-
-// app.get("/", function(req, res) {
-//   res.render("search");
-// });
 
 
 app.get("/", function(req, res) {
   res.render("index");
 });
 
+
+
+
+
+
+
+
+app.listen(PORT, function() {
+  console.log('Node app is running on', PORT);
+});
 
 
 

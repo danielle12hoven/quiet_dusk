@@ -39,11 +39,12 @@ var parseStrainData = function(data){
       str += key + " ";
     }
     var seedCompany = data.data[i].seedCompany.name;
-    var img_url = data.data[i].image;
+    var strain_img_url = data.data[i].image;
+
     $(".postStrainData").append(strainName + " was created in " + createdDate + ".");
     $(".postStrainData").append(" It's origins are: " + str + ".");
     $(".postStrainData").append(" You can buy " + strainName + " at the company: " + seedCompany + ".");
-    $(".postStrainData").attr(img_url);
+    $(".postStrainData").attr(strain_img_url);
     $(".postStrainData").append("<br><br>");
   }
 }
@@ -78,20 +79,15 @@ var addEdiblesFunction = function(){
 
 //PARSEDATA
 var parseEdiblesData = function(data){
-  for(var i=0; i < data.data.length; i++){
-    var strainName = data.data[i].name;
-    var createdDate = data.data[i].createdAt.datetime;
-    var countryData = data.data[i].lineage;
-    var str = "";
-    for (var key in countryData) {
-      str += key + " ";
-    }
-    var seedCompany = data.data[i].seedCompany.name;
-    var img_url = data.data[i].image;
-    $(".postEdiblesData").append(strainName + " was created in " + createdDate + ".");
-    $(".postEdiblesData").append(" It's origins are: " + str + ".");
-    $(".postEdiblesData").append(" You can buy " + strainName + " at the company: " + seedCompany + ".");
-    $(".postEdiblesData").attr(img_url);
+  for(var j=0; j < data.data.length; j++){
+    var ediblesName = data.data[j].name;
+    var producerName = data.data[j].producer.name;
+    var edibleType = data.data[j].type;
+    var edibles_img_url = data.data[j].image;
+
+    $(".postEdiblesData").append(ediblesName + " was created by " + producerName + ".");
+    $(".postEdiblesData").append(" Type: " + edibleType + ".");
+    $(".postEdiblesData").attr(edibles_img_url);
     $(".postEdiblesData").append("<br><br>");
   }
 }
