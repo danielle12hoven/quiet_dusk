@@ -1,8 +1,4 @@
-DROP TABLE if EXISTS users;
+INSERT INTO users (id, email, password_digest) VALUES (1, 'danielle12hoven@gmail.com', '1111');
 
-CREATE TABLE users(
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    password_digest VARCHAR(255)
-);
+
+

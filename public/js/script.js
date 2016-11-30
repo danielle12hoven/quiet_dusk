@@ -30,7 +30,11 @@ var addStrainFunction = function(){
 
 //PARSEDATA
 var parseStrainData = function(data){
+  var $strainUl = $("<ul>");
+
   for(var i=0; i < data.data.length; i++){
+    var $strainLi = $('<li>')
+
     var strainName = data.data[i].name;
     var createdDate = data.data[i].createdAt.datetime;
     var countryData = data.data[i].lineage;
@@ -45,7 +49,11 @@ var parseStrainData = function(data){
     $(".postStrainData").append(" It's origins are: " + str + ".");
     $(".postStrainData").append(" You can buy " + strainName + " at the company: " + seedCompany + ".");
     $(".postStrainData").attr(strain_img_url);
+    $(".postStrainData").append()
     $(".postStrainData").append("<br><br>");
+
+
+
   }
 }
 
@@ -83,11 +91,11 @@ var parseEdiblesData = function(data){
     var ediblesName = data.data[j].name;
     var producerName = data.data[j].producer.name;
     var edibleType = data.data[j].type;
-    var edibles_img_url = data.data[j].image;
+    var edibles_img_url = data.data[i].image;
 
     $(".postEdiblesData").append(ediblesName + " was created by " + producerName + ".");
     $(".postEdiblesData").append(" Type: " + edibleType + ".");
-    $(".postEdiblesData").attr(edibles_img_url);
+    $(".postEdiblesData").attr(<img>edibles_img_url);
     $(".postEdiblesData").append("<br><br>");
   }
 }
