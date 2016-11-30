@@ -1,5 +1,5 @@
 DROP TABLE if EXISTS users;
-DROP TABLE if EXISTS saved;
+DROP TABLE if EXISTS emails;
 
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
@@ -7,14 +7,13 @@ CREATE TABLE users(
     password_digest VARCHAR(255)
 );
 
-COPY users
-  (id, email, password_digest)
-FROM '/Users/danielletwaalfhoven/code/heroku_lab_2/db/seed.sql'
-    DELIMITER ',' SQL;
 
-
-
-CREATE TABLE saved(
+CREATE TABLE emails(
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    message VARCHAR(255) NOT NULL
 );
+
+INSERT INTO users (email, password_digest) VALUES ('danielle12hoven@gmail.com', '1111');
+INSERT INTO emails (name, email, message) VALUES ('Danielle', 'danielle12hoven@yahoo.com', 'hello');

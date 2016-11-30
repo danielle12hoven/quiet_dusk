@@ -1,9 +1,10 @@
 <!doctype html>
 <html>
   <head>
-    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/skeleton.css" rel="stylesheet" type="text/css">
+    <link href="/css/bootstrap-theme.css" rel="stylesheet" type="text/css">
     <link href="/css/style.css" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Rye' rel='stylesheet' type='text/css'>
+
   </head>
 
   <body>
@@ -17,8 +18,6 @@
             <form class="form-horizontal" action="/signup" method="post">
 
               <fieldset>
-
-                <legend>Sign Up</legend>
 
                 <div class="form-group">
                   <label for="inputEmail" class="col-lg-2 control-label">Email</label>
@@ -45,7 +44,7 @@
                 <div class="form-group">
                   <div class="col-lg-10 col-lg-offset-2">
                     <a href = "/views/sign-up/signin.html">
-                      <button type="submit" class="btn btn-primary" id="signUpButton">Join!</button>
+                      <button type="submit" class="btn btn-primary" id="signUpButton" onclick="window.location.href='/sign-up/saved'">Join!</button>
                     </a>
                   </div>
                 </div>
