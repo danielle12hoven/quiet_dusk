@@ -20,6 +20,13 @@ app.use("/", express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.use(session({
+  secret: 'theTruthIsOutThere51',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}))
+
 
 var db = pgp(process.env.DATABASE_URL || 'postgres://danielletwaalfhoven@localhost:5432/cannabisList');
 
@@ -71,15 +78,18 @@ app.post('/contact', function(req, res){
 app.get("/", function(req, res){
   var logged_in;
   var email;
+  var id;
 
   if(req.session.user){
     logged_in = true;
-    email = req.session.users.email;
+    email = req.session.user.email;
+    id = req.session.user.id;
   }
 
-  var data = {
+  var user = {
     "logged_in": logged_in,
-    "email": email
+    "email": email,
+    "id": id
   }
 
   res.render('sign-up/signin');
@@ -89,11 +99,13 @@ app.post('/signup', function(req, res){
   var data = req.body;
 
   bcrypt.hash(data.password, 10, function(err, hash){
-    db.none(
-      "INSERT INTO users (email, password_digest) VALUES ($1, $2)",
+    db.one(
+      "INSERT INTO users (email, password_digest) VALUES ($1, $2) returning *",
       [data.email, hash]
-    ).then(function(){
-      res.render('sign-up/signin');
+    ).then(function(user){
+      req.session.user = user;
+      // res.render('sign-up/signin');
+      res.render('saved')
     })
   });
 })
@@ -110,7 +122,8 @@ app.post('/signin', function(req, res){
     bcrypt.compare(data.password, user.password_digest, function(err, cmp){
       if(cmp){
         req.session.user = user;
-        res.render('index');
+        // res.render('index');
+        res.render('saved')
       } else {
         res.send('Email/Password not found.')
       }
