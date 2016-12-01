@@ -125,6 +125,7 @@ var parseEdiblesData = function(data){
     $(".postEdiblesData").append($ediblesUl);
 
   }
+  saveButton()
 }
 
 
@@ -188,6 +189,7 @@ var parseDispensaryData = function(data){
     $dispensaryUl.append($dispensaryLi);
     $(".postDispensaryData").append($dispensaryUl)
   }
+  saveButton()
 }
 
 
@@ -195,7 +197,7 @@ var parseDispensaryData = function(data){
 var getSaved = function(saved) {
   $.ajax({
     type:"GET",
-    url: "/saved",
+    url: "/save",
     dataType:"jsonp",
     success: function(data) {
       console.log(data.data);
@@ -205,6 +207,8 @@ var getSaved = function(saved) {
     }
   })
 }
+
+//SAVE STRAINS
 var saveButton = function(){
     var buttons = $('.saveButton')
     $.each(buttons, function(index, value){
@@ -214,13 +218,10 @@ var saveButton = function(){
       var text = $(data).text()
 
       console.log(text)
-      // var saved = $(".saveButton").val();
       saveData(text);
     });
     })
-
   };
-
 
  var saveData = function(data){
     var data = {name:data};
@@ -230,9 +231,5 @@ var saveButton = function(){
       data:data
     })
  }
-
-
-
-
 
 });

@@ -100,7 +100,7 @@ app.post('/contact', function(req, res){
     db.one("INSERT INTO emails(name, email, message) values($1, $2, $3) returning message", [req.body.name, req.body.email, req.body.message])
    .then(function(data){
      console.log(data.id);
-     res.render("saved",{message: data.message});
+     res.render("contactSent",{message: data.message});
    })
    .catch(function(error){
      console.log("Error, User could not be made", error.message || error);
@@ -111,7 +111,7 @@ app.post('/contact', function(req, res){
 
 
 
-//SAVED DATA FOR STRAINS
+//SAVED DATA FOR STRAINS - WORKS!
 app.post('/save', function(req, res){
     var user_id = req.session.user.id;
     var name = req.body.name;
@@ -123,12 +123,7 @@ app.post('/save', function(req, res){
    })
 });
 
+
+
 //SAVED DATA FOR EDIBLES
-app.post('/edibles', function(req, res){
-    console.log(req.body.name);
-    db.one("INSERT INTO saved(name) values($1) returning id", [req.body.name])
-   .then(function(data){
-     console.log(data.id);
-     res.render("saved",{name: data.name});
-   })
-});
+
