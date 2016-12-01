@@ -35,46 +35,7 @@ app.listen(PORT, function() {
 });
 
 
-
-//EMAIL DATA - WORKS!
-app.post('/contact', function(req, res){
-  console.log(req.body.name);
-    db.one("INSERT INTO emails(name, email, message) values($1, $2, $3) returning message", [req.body.name, req.body.email, req.body.message])
-   .then(function(data){
-     console.log(data.id);
-     res.render("saved",{message: data.message});
-   })
-   .catch(function(error){
-     console.log("Error, User could not be made", error.message || error);
-   });
-});
-
-
-
-// //SIGN UP DATA - WORKS!
-// app.post('/signup', function(req, res){
-//     console.log(req.body.name);
-//     db.one("INSERT INTO users(email, password_digest) values($1, $2) returning id", [req.body.email, req.body.password])
-//    .then(function(data){
-//      console.log(data.id);
-//      res.render("sign-up/signin",{id: data.id});
-//    })
-//    .catch(function(error){
-//      alert("Error, User could not be made", error.message || error);
-//    });
-// });
-
-// //SIGN IN DATA
-// app.get('/signin', function(req, res){
-//     console.log(req.body.name);
-//     db.one("SELECT email, password_digest FROM users IF email === users.email, users.password_digest")
-//     .then(function(data){
-//    res.render("index");
-//  });
-// });
-
-
-//START OF TESTING
+//WORKS!
 app.get("/", function(req, res){
   var logged_in;
   var email;
@@ -95,6 +56,8 @@ app.get("/", function(req, res){
   res.render('sign-up/signin');
 });
 
+
+//SIGN UP - WORKS!
 app.post('/signup', function(req, res){
   var data = req.body;
 
@@ -104,12 +67,12 @@ app.post('/signup', function(req, res){
       [data.email, hash]
     ).then(function(user){
       req.session.user = user;
-      // res.render('sign-up/signin');
-      res.render('saved')
+      res.render('index')
     })
   });
 })
 
+//SIGN IN - WORKS!
 app.post('/signin', function(req, res){
   var data = req.body;
 
@@ -122,8 +85,7 @@ app.post('/signin', function(req, res){
     bcrypt.compare(data.password, user.password_digest, function(err, cmp){
       if(cmp){
         req.session.user = user;
-        // res.render('index');
-        res.render('saved')
+        res.render('index')
       } else {
         res.send('Email/Password not found.')
       }
@@ -131,31 +93,33 @@ app.post('/signin', function(req, res){
   });
 });
 
-//END OF TESTING
 
-
-
-
+//EMAIL DATA - WORKS!
+app.post('/contact', function(req, res){
+  console.log(req.body.name);
+    db.one("INSERT INTO emails(name, email, message) values($1, $2, $3) returning message", [req.body.name, req.body.email, req.body.message])
+   .then(function(data){
+     console.log(data.id);
+     res.render("saved",{message: data.message});
+   })
+   .catch(function(error){
+     console.log("Error, User could not be made", error.message || error);
+   });
+});
 
 
 
 
 
 //SAVED DATA FOR STRAINS
-app.post('/search', function(req, res){
-  var userId;
-    if(req/session.user) {
-      logged_in = true;
-      email = req.session.user.email;
-      password_digest = req.session.user.id;
-    }
-    var userId
+app.post('/save', function(req, res){
+    var user_id = req.session.user.id;
     var name = req.body.name;
     console.log(req.body.name);
-    db.none("INSERT INTO saved(name) values($1)", [name])
+
+    db.none("INSERT INTO saved(name, user_id) values($1, $2)", [name, user_id])
    .then(function(data){
-     console.log(data.name);
-     res.render("saved");
+     console.log('saved');
    })
 });
 

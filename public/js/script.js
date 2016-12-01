@@ -61,7 +61,9 @@ var parseStrainData = function(data){
 
     $strainUl.append($strainLi);
     $(".postStrainData").append($strainUl)
+
   }
+  saveButton()
 }
 
 
@@ -189,37 +191,11 @@ var parseDispensaryData = function(data){
 }
 
 
-
-//GETTING USER INFO FOR LOGIN
-// var getUser = function(users) {
-//   $.ajax({
-//     type:"GET",
-//     url: "/db/users",
-//     dataType:"jsonp",
-//     success: function(data) {
-//       console.log(data.data);
-//   },
-//     error: function(data){
-//       console.log(data)
-//     }
-//   })
-// }
-
-// var addUserFunction = function(){
-//     $("#signInButton").click(function(edibles){
-//       var users = $("#signInButton").val();
-//       getUser(users);
-//       event.preventDefault();
-//     });
-//   };
-//   addUserFunction()
-
-
 //EVENTHANDLER SAVE BUTTON
 var getSaved = function(saved) {
   $.ajax({
     type:"GET",
-    url: "/db/saved",
+    url: "/saved",
     dataType:"jsonp",
     success: function(data) {
       console.log(data.data);
@@ -230,26 +206,29 @@ var getSaved = function(saved) {
   })
 }
 var saveButton = function(){
-    $(".saveButton").click(function(data){
-      var saved = $(".saveButton").val();
-      saveAllData(data);
-      event.preventDefault();
+    var buttons = $('.saveButton')
+    $.each(buttons, function(index, value){
+      $(value).click(function(event){
+        event.preventDefault();
+      var data = $('.appendedItems')[index]
+      var text = $(data).text()
+
+      console.log(text)
+      // var saved = $(".saveButton").val();
+      saveData(text);
     });
+    })
+
   };
-  saveButton()
 
- var saveAllData = function(data){
-  var $savedUl = $("<ul>");
-  var $savedLi = $("<li>");
 
-  $savedLi = $savedLi.addClass("savedItems")
-
-  var appendItem = (saveButton);
-
-  $savedLi.append(appendItem);
-  $savedUl.append($savedLi);
-
-  $(".postSavedData").append($savedUl);
+ var saveData = function(data){
+    var data = {name:data};
+    $.ajax({
+      url:"/save",
+      method:"post",
+      data:data
+    })
  }
 
 
