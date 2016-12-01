@@ -19,26 +19,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-//this is the test for sign-in/sign-up//
-// app.use(session({
-//   secret: 'theTruthIsOutThere51',
-//   resave: false,
-//   saveUninitialized: true,
-//   cookie: { secure: false }
-// }))
-//this is the test for sign-in/sign-up//
-
-
 var db = pgp(process.env.DATABASE_URL || 'postgres://danielletwaalfhoven@localhost:5432/cannabisList');
 
-
 app.get("/", function(req, res) {
-  res.render("index");
+  res.render("sign-up/signin");
 });
-
-
-
-
 
 app.listen(PORT, function() {
   console.log('Node app is running on', PORT);
@@ -46,33 +31,9 @@ app.listen(PORT, function() {
 
 
 
-// this is the original one
-// app.get('/', function(req, res) {
-//     db.one('SELECT * FROM users').then(function(data) {
-//         var template_data = {
-//             messages: data
-//         }
-//         res.render('index', template_data);
-//     });
-// });
-
-
-//SIGN UP DATA
-app.post('/sign-up/signup', function(req, res){
-    db.one("INSERT INTO users(email, password_digest) values($1, $2) returning id", [req.body.email, req.body.password])
-   .then(function(data){
-     console.log(data.id);
-     res.render("saved", {id: data.id});
-   })
-   .catch(function(error){
-     console.log("Error, User could not be made", error.message || error);
-   });
-});
-
-
-//EMAIL DATA
+//EMAIL DATA - WORKS!
 app.post('/contact', function(req, res){
-  console.log(req.body.name)
+  console.log(req.body.name);
     db.one("INSERT INTO emails(name, email, message) values($1, $2, $3) returning message", [req.body.name, req.body.email, req.body.message])
    .then(function(data){
      console.log(data.id);
@@ -83,10 +44,44 @@ app.post('/contact', function(req, res){
    });
 });
 
+//SIGN UP DATA - WORKS!
+app.post('/signup', function(req, res){
+    console.log(req.body.name);
+    db.one("INSERT INTO users(email, password_digest) values($1, $2) returning id", [req.body.email, req.body.password])
+   .then(function(data){
+     console.log(data.id);
+     res.render("sign-up/signin",{id: data.id});
+   })
+   .catch(function(error){
+     alert("Error, User could not be made", error.message || error);
+   });
+});
 
+//SIGN IN DATA
+app.get('/signin', function(req, res){
+    console.log(req.body.name);
+    db.one("SELECT email, password_digest FROM users IF email === users.email, users.password_digest")
+    .then(function(data){
+   res.render("index");
+ });
+});
 
-//this should work like the realty exercise in pulling data from the r_basicprofile
-//and rendering the info in the people.html page
+//SAVED DATA FOR STRAINS
+app.post('/search', function(req, res){
+    console.log(req.body.name);
+    db.one("INSERT INTO saved(name) values($1) returning name", [req.body.name])
+   .then(function(data){
+     console.log(data.id);
+     res.render("saved",{name: data.name});
+   })
+});
 
-
-
+//SAVED DATA FOR EDIBLES
+app.post('/edibles', function(req, res){
+    console.log(req.body.name);
+    db.one("INSERT INTO saved(name) values($1) returning id", [req.body.name])
+   .then(function(data){
+     console.log(data.id);
+     res.render("saved",{name: data.name});
+   })
+});
