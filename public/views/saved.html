@@ -14,16 +14,16 @@
       <div class="topNav">
         <ul class="navbar-default">
           <li class="listItems">
-            <a href="/views/contact.html">Contact</a>
+            <a href="/contact">Contact</a>
           </li>
           <li class="listItems">
-            <a href="/views/saved.html">Saved</a>
+            <a href="/save">Saved</a>
           </li>
 <!--           <li class="listItems">
             <a href="/views/sign-up/signin.html">Sign In</a>
           </li> -->
           <li class="listItems">
-            <a href="/views/sign-up/signin.html">Sign Out</a>
+            <a href="/sign-up/signin">Sign Out</a>
           </li>
         </ul>
       </div>
@@ -33,19 +33,19 @@
       <div class="middleNav">
         <ul class="#">
           <li class="listItems">
-            <a href="/views/index.html">Home</a>
+            <a href="/index">Home</a>
           </li>
           <li class="listItems">
-            <a href="/views/search.html">Strains</a>
+            <a href="/search">Strains</a>
           </li>
           <li class="listItems">
-            <a href="/views/edibles.html">Edibles</a>
+            <a href="/edibles">Edibles</a>
           </li>
           <li class="listItems">
-            <a href="/views/dispensaries.html">Dispensaries</a>
+            <a href="/dispensaries">Dispensaries</a>
           </li>
           <li class="listItems">
-            <a href="/views/articles.html">Articles</a>
+            <a href="/articles">Articles</a>
           </li>
         </ul>
       </div>
@@ -54,9 +54,14 @@
       <h1>Saved</h1>
     </div>
 
-    <div class="postSavedData"></div>
+    <div class="postSavedData">
+       {{#data}}
+       {{name}}
+       {{/data}}
+    </div>
 
       </div>
+
 
     <script src="/js/jquery.js" type="text/javascript"></script>
     <script src="/js/script.js" type="text/javascript"></script>

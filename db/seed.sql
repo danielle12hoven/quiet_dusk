@@ -4,7 +4,7 @@ DROP TABLE if EXISTS saved;
 
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
-    email VARCHAR(255) UNIQUE NOT NULL,
+    email VARCHAR(255) NOT NULL,
     password_digest VARCHAR(255)
 );
 
@@ -20,10 +20,10 @@ CREATE TABLE emails(
 CREATE TABLE saved(
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    user_id INTEGER REFERENCES users
+    user_id INTEGER
 );
 
 
 INSERT INTO users (email, password_digest) VALUES ('danielle12hoven@gmail.com', '1111');
 INSERT INTO emails (name, email, message) VALUES ('Danielle', 'danielle12hoven@yahoo.com', 'hello');
-INSERT INTO saved (name) VALUES ('Purple Rain');
+INSERT INTO saved (name, user_id) VALUES ('Purple Rain', 123);

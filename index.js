@@ -76,10 +76,8 @@ app.post('/signup', function(req, res){
 app.post('/signin', function(req, res){
   var data = req.body;
 
-  db.one(
-    "SELECT * FROM users WHERE email = $1",
-    [data.email]
-  ).catch(function(){
+  db.one("SELECT * FROM users WHERE email = $1",[data.email])
+  .catch(function(){
     res.send('Email/Password not found.')
   }).then(function(user){
     bcrypt.compare(data.password, user.password_digest, function(err, cmp){
@@ -108,10 +106,7 @@ app.post('/contact', function(req, res){
 });
 
 
-
-
-
-//SAVED DATA FOR STRAINS - WORKS!
+//SAVED DATA - WORKS!
 app.post('/save', function(req, res){
     var user_id = req.session.user.id;
     var name = req.body.name;
@@ -124,6 +119,46 @@ app.post('/save', function(req, res){
 });
 
 
+//DISPLAY DATA
+app.get('/saved', function(req, res){
+  console.log('/saved')
+  db.many("SELECT * FROM saved WHERE user_id = $1", [req.session.user.id])
+  .then(function(data){
+    console.log(data)
+    var data = {data:data}
+    res.render('saved', data);
+  });
+});
 
-//SAVED DATA FOR EDIBLES
+
+app.get('/articles', function(req, res){
+  res.render('articles')
+})
+app.get('/contact', function(req, res){
+  res.render('contact')
+})
+app.get('/contactSent', function(req, res){
+  res.render('contactSent')
+})
+app.get('/dispensaries', function(req, res){
+  res.render('dispensaries')
+})
+app.get('/edibles', function(req, res){
+  res.render('edibles')
+})
+app.get('/index', function(req, res){
+  res.render('index')
+})
+// app.get('/saved', function(req, res){
+//   res.render('saved')
+// })
+app.get('/search', function(req, res){
+  res.render('search')
+})
+app.get('/sign-up/signin', function(req, res){
+  res.render('sign-up/signin')
+})
+app.get('/sign-up/signup', function(req, res){
+  res.render('sign-up/signup')
+})
 
