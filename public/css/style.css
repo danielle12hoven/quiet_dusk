@@ -24,8 +24,8 @@ body {
   border: solid black 1px;
   border-radius: 10px;
   padding: 30px;
-/*   display: inline-block; */
-}
+/*   display: inline-block;
+ */}
 
 #mainImage {
   width: 250px;
@@ -37,26 +37,6 @@ body {
   height: 180px;
 }
 
-
-/*
-.item {
-  width:500px;
-  height: 110px;
-  margin-top: 10px;
-  list-style-type: none;
-  box-shadow: -2px 2px 1px #222222;
-  background-color: #EEEEEE;
+.blogSection {
+  text-align: right;
 }
-
-.image {
-  float: left;
-  margin: 0 10px 0 10px;
-  box-shadow: -1px 1px 2px #222222;
-}
-
-.searchBar {
-  margin: auto;
-  width: 290px;
-} */
-
-

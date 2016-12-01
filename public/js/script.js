@@ -2,7 +2,8 @@ $(document).ready(function() {
 console.log("script loaded")
 
 
-//GET STRAINS
+
+//GET STRAINS - WORKS!
 var getStrainInfo = function(strains) {
   $.ajax({
     type:"GET",
@@ -66,7 +67,7 @@ var parseStrainData = function(data){
 
 
 
-//GET EDIBLES
+//GET EDIBLES - WORKS!
 var getEdiblesInfo = function(edibles) {
   $.ajax({
     type:"GET",
@@ -125,7 +126,7 @@ var parseEdiblesData = function(data){
 }
 
 
-//GET DISPENSARIES
+//GET DISPENSARIES - WORKS!
 var getDispensaryInfo = function(dispensaries) {
   $.ajax({
     type:"GET",
@@ -169,7 +170,7 @@ var parseDispensaryData = function(data){
     var dispensaryEdibles = data.data[n].edibles.count;
     var dispensaryFlowers = data.data[n].flowers.count;
     var dispensaryExtracts = data.data[n].extracts.count;
-    var dispensary_img_url = data.data[n].image;
+    // var dispensary_img_url = data.data[n].image;
 
     $dispensaryLi.append(dispensaryName + "<br />");
     $dispensaryLi.append("City: " + dispensaryCity + "<br />");
@@ -190,10 +191,35 @@ var parseDispensaryData = function(data){
 
 
 //GETTING USER INFO FOR LOGIN
-var getUser = function(users) {
+// var getUser = function(users) {
+//   $.ajax({
+//     type:"GET",
+//     url: "/db/users",
+//     dataType:"jsonp",
+//     success: function(data) {
+//       console.log(data.data);
+//   },
+//     error: function(data){
+//       console.log(data)
+//     }
+//   })
+// }
+
+// var addUserFunction = function(){
+//     $("#signInButton").click(function(edibles){
+//       var users = $("#signInButton").val();
+//       getUser(users);
+//       event.preventDefault();
+//     });
+//   };
+//   addUserFunction()
+
+
+//EVENTHANDLER SAVE BUTTON
+var getSaved = function(saved) {
   $.ajax({
     type:"GET",
-    url: "/db/users",
+    url: "/db/saved",
     dataType:"jsonp",
     success: function(data) {
       console.log(data.data);
@@ -203,21 +229,9 @@ var getUser = function(users) {
     }
   })
 }
-
-var addUserFunction = function(){
-    $("#signInButton").click(function(edibles){
-      var users = $("#signInButton").val();
-      getUser(users);
-      event.preventDefault();
-    });
-  };
-  addUserFunction()
-
-
-//EVENTHANDLER SAVE BUTTON
 var saveButton = function(){
     $(".saveButton").click(function(data){
-      var save = $(".saveButton").val();
+      var saved = $(".saveButton").val();
       saveAllData(data);
       event.preventDefault();
     });
