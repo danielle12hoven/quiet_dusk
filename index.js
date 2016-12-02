@@ -29,7 +29,7 @@ app.use(session({
 }))
 
 
-var db = pgp(process.env.DATABASE_URL || 'postgres://danielletwaalfhoven@quiet-dusk-36143:5432/cannabisList');
+var db = pgp(process.env.DATABASE_URL || 'postgres://danielletwaalfhoven@localhost:5432/cannabisList');
 
 app.listen(PORT, function() {
   console.log('Node app is running on', PORT);
