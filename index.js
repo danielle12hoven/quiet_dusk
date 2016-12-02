@@ -158,9 +158,6 @@ app.get('/edibles', function(req, res){
 app.get('/index', function(req, res){
   res.render('index')
 })
-// app.get('/saved', function(req, res){
-//   res.render('saved')
-// })
 app.get('/search', function(req, res){
   res.render('search')
 })
