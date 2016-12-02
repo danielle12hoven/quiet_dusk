@@ -96,7 +96,7 @@ a:hover, a:visited, a:link, a:active {
   background-image: url("../images/leaf3.gif");
 }
 
-.saveButton, .btn {
+.saveButton, .btn, #button1, #button2, #button3, #buttonContact {
   background-color: white;
 }
 
