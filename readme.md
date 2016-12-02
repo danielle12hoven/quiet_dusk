@@ -10,4 +10,5 @@ Articles source:
     - <iframe src="http://www.thcfinder.com/webapi/?sid=0&near=0&strains=0&blog=5" style="border:0px #FFFFFF none;" name="thcfinder_web_api" scrolling="no" frameborder="0" marginheight="0px" marginwidth="0px" height="735px" width="300px" allowTransparency="true"></iframe>
     - taken from api directly as instructed by api
 
-
+Sign in/up credit:
+- Brian Mytko's class, U2 d08
