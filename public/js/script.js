@@ -218,44 +218,6 @@ var saveButton = function(){
  };
 
 
-// SEND SAVED DATA TO SAVED.HTML
-// var getSaved = function(saved) {
-//   $.ajax({
-//     type:"GET",
-//     url: "/save",
-//     // dataType:"jsonp",
-//     success: function(data) {
-//       console.log(data.data);
-//   },
-//     error: function(data){
-//       console.log(data)
-//       postData(data);
-//     }
-//   });
-// };
-
-// var postData = function(data){
-//   var $savedUl = $("<ul>");
-
-//   // for(var k=0; k < data.data.length; k++){
-//     var $savedLi = $('<li>');
-//     $savedLi = $savedLi.addClass("savedItems")
-
-//     var $deleteButton = $("<button>Delete</button>")
-//     $deleteButton = $deleteButton.addClass("deleteButton")
-
-//     // var savedName = data[k].name;
-
-//     var savedName = data;
-
-//     $savedLi.append(savedName);
-
-//     $savedUl.append($savedLi);
-//     $(".postSavedData").append($savedUl)
-//   // }
-// }
-
-
 
 
 

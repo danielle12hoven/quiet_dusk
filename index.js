@@ -19,6 +19,7 @@ app.use("/", express.static(__dirname + '/public'));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(methodOverride('_method'));
 
 app.use(session({
   secret: 'theTruthIsOutThere51',
@@ -119,10 +120,10 @@ app.post('/save', function(req, res){
 });
 
 
-//DISPLAY DATA
+//DISPLAY DATA - WORKS!
 app.get('/saved', function(req, res){
   console.log('/saved')
-  db.many("SELECT * FROM saved WHERE user_id = $1", [req.session.user.id])
+  db.any("SELECT * FROM saved WHERE user_id = $1", [req.session.user.id])
   .then(function(data){
     console.log(data)
     var data = {data:data}
@@ -130,7 +131,15 @@ app.get('/saved', function(req, res){
   });
 });
 
+// DELETE ITEM FROM SAVED TABLE
+app.delete('/saved/:id', function(req,res) {
+  console.log(req.params)
+  db.none("DELETE FROM saved WHERE id = $1", [req.params.id])
+  res.redirect('saved')
+})
 
+
+//RENDERING EVERYTHING
 app.get('/articles', function(req, res){
   res.render('articles')
 })
@@ -161,4 +170,7 @@ app.get('/sign-up/signin', function(req, res){
 app.get('/sign-up/signup', function(req, res){
   res.render('sign-up/signup')
 })
+
+
+
 

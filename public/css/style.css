@@ -1,9 +1,11 @@
-navbar {
-  text-align: right;
-}
 
 body {
   text-align: center;
+/*     background-color:#DBFDD7; */
+  background-image: url("../images/leaf4.png");
+}
+
+h1 {
 }
 
 .about {
@@ -19,13 +21,57 @@ body {
   display: inline-block;
 }
 
+.container {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* padding: 1px; */
+}
+
+a:hover, a:visited, a:link, a:active {
+  text-decoration: none;
+  padding: 20px;
+  font-size: 16px;
+  color: black;
+}
+
+.navbarMiddle{
+  /* background-color: rgba(1, 100, 1, 0.4); */
+  background-color: white;
+  border-radius: 10px;
+  padding-top: 10px;
+  border: solid black 1px;
+}
+
+.navbarTop {
+  background: rgba(0, 0, 0, 0.5);
+  background-color: white;
+  /* background: linear-gradient(white, rgba(214,255,155,0.7)); */
+  padding-top: 10px;
+  border: solid black 1px;
+  border-radius: 10px;
+}
+
+.indexHeader {
+  background: rgba(0, 0, 0, 0.5);
+  background-color: white;
+  border-radius: 10px;
+ }
+
+.aboutBorder, .infoSection{
+  border-radius: 10px;
+  border: solid black 1px;
+  /* background-color:white; */
+  background-color:#DBFDD7;
+  padding-top: 10px;
+}
+
 .appendedItems {
   list-style-type: none;
   border: solid black 1px;
   border-radius: 10px;
   padding: 30px;
-/*   display: inline-block;
- */}
+  /* background-color:white; */
+  background-color:#DBFDD7;
+}
 
 #mainImage {
   width: 250px;
@@ -40,3 +86,32 @@ body {
 .blogSection {
   text-align: right;
 }
+
+.leaf {
+  width: 50px;
+  height: 50px;
+}
+
+.contact2 {
+  background-image: url("../images/leaf3.gif");
+}
+
+.saveButton, .btn {
+  background-color: white;
+}
+
+#savedItems{
+  list-style-type: none;
+  border: solid black 1px;
+  border-radius: 10px;
+  padding: 10px;
+  background-color:#DBFDD7;
+}
+
+#header {
+  background-color: white;
+  border-radius: 10px;
+  padding: 5px;
+
+}
+
